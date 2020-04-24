@@ -1,5 +1,3 @@
-# Readme
-
 # Installation
 ```bush
 npm install @tomas_light/dictionary
@@ -36,12 +34,15 @@ dictionary = Dictionary.fromPairs<number, string>([
 
 // get all values
 const allValues: string[] = dictionary.getValues();
+console.log(allValues); // ["my data", "another data"]
 
 // get values by keys
 const values: string[] = dictionary.getByKeys([ 1, 2 ]);
+console.log(values); // ["my data", "another data"]
 
 // get value by key
 const data: string = dictionary.get(1);
+console.log(data); // "my data"
 
 
 // remove value by key
@@ -50,23 +51,26 @@ dictionary.remove(1);
 
 // search in dictionary
 
-const isDictionaryContainsMyData = dictionary.some(
-    (pair: IPair<number, string>) => pair.value === "my data"
+const isDictionaryContainsAnotherData = dictionary.some(
+    (pair: IPair<number, string>) => pair.value === "another data"
 );
+console.log(isDictionaryContainsAnotherData); // true
 
-const isDictionaryContainsKey = dictionary.containsKey(1);
+const isDictionaryContainsKey = dictionary.containsKey(2);
+console.log(isDictionaryContainsAnotherData); // true
 
 // enumeration
 let someValue = 0;
 dictionary.forEach(
     (pair: IPair<number, string>) => someValue += pair.key
 ); 
+console.log(someValue); // 2
 ```
 
 ## Get key for react fragment
 
 If you render your dictionary you will need to add `key` property to react fragment. You can use `toString()` method of `IKeyValuePair`
-```ts
+```tsx
 import React, { FunctionComponent } from "react";
 import { 
     IDictionary, 
@@ -84,7 +88,7 @@ const UserNameList: FunctionComponent = (props) => {
     return (
         <div>
             {userNames.getKeyValuePairs().map(
-                (pair: IKeyValuePair<number, User>) => {
+                (pair: IKeyValuePair<number, string>) => {
                     <p key={pair.toString()}>
                         {pair.value}
                     </p>
