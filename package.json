@@ -1,6 +1,6 @@
 {
-  "name": "dictionary",
-  "version": "0.9.5",
+  "name": "@tomas_light/dictionary",
+  "version": "1.0.0",
   "description": "Dictionary like in C#",
   "contributors": [
     {
