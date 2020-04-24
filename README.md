@@ -34,15 +34,20 @@ dictionary = Dictionary.fromPairs<number, string>([
 
 // get all values
 const allValues: string[] = dictionary.getValues();
-console.log(allValues); // ["my data", "another data"]
 
 // get values by keys
 const values: string[] = dictionary.getByKeys([ 1, 2 ]);
-console.log(values); // ["my data", "another data"]
 
 // get value by key
 const data: string = dictionary.get(1);
-console.log(data); // "my data"
+
+console.log(allValues);
+console.log(values);
+console.log(data);
+
+// ["my data", "another data"]
+// ["my data", "another data"]
+// "my data"
 
 
 // remove value by key
@@ -54,17 +59,23 @@ dictionary.remove(1);
 const isDictionaryContainsAnotherData = dictionary.some(
     (pair: IPair<number, string>) => pair.value === "another data"
 );
-console.log(isDictionaryContainsAnotherData); // true
 
-const isDictionaryContainsKey = dictionary.containsKey(2);
-console.log(isDictionaryContainsAnotherData); // true
+const isDictionaryContainsKey = dictionary.containsKey(1);
+
+console.log(isDictionaryContainsAnotherData);
+console.log(isDictionaryContainsKey);
+
+ // true
+ // false - because it was removed by `dictionary.remove(1);`
 
 // enumeration
 let someValue = 0;
 dictionary.forEach(
     (pair: IPair<number, string>) => someValue += pair.key
 ); 
-console.log(someValue); // 2
+
+console.log(someValue);
+// 2
 ```
 
 ## Get key for react fragment
