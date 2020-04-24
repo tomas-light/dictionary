@@ -158,9 +158,8 @@ export class Dictionary<TKey = any, TValue = any>
         return this.pairs.some((pair) => expression(pair));
     }
 
-    public enumerate(): IKeyValuePair<TKey, TValue>[] {
-        const enumeration: IKeyValuePair<TKey, TValue>[] = [ ...this.pairs ];
-        return enumeration;
+    public getKeyValuePairs(): IKeyValuePair<TKey, TValue>[] {
+        return [ ...this.pairs ];
     }
 
     public forEach(expression: (pair: IKeyValuePair<TKey, TValue>) => void): void {

@@ -21,7 +21,7 @@ export interface IDictionary<TKey = any, TValue = any> {
 
     some(expression: (pair: IKeyValuePair<TKey, TValue>) => boolean): boolean;
 
-    enumerate(): IKeyValuePair<TKey, TValue>[];
+    getKeyValuePairs(): IKeyValuePair<TKey, TValue>[];
 
     forEach(expression: (pair: IKeyValuePair<TKey, TValue>) => void): void;
 
