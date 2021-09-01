@@ -68,6 +68,10 @@ export class Dictionary<Key = any, Value = any> implements IDictionary<Key, Valu
     return this.pairs.some((pair) => expression(pair));
   }
 
+  find(expression: (pair: KeyValuePair<Key, Value>) => boolean): KeyValuePair<Key, Value> | undefined {
+    return this.pairs.find((pair) => expression(pair));
+  }
+
   forEach(expression: (pair: KeyValuePair<Key, Value>) => void): void {
     this.pairs.forEach((pair) => expression(pair));
   }

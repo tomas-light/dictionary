@@ -21,6 +21,7 @@ interface IDictionary<Key = any, Value = any> {
   hasValue(value: Value): boolean;
 
   some(expression: (pair: KeyValuePair<Key, Value>) => boolean): boolean;
+  find(expression: (pair: KeyValuePair<Key, Value>) => boolean): KeyValuePair<Key, Value> | undefined;
   forEach(expression: (pair: KeyValuePair<Key, Value>) => void): void;
   map<NewKey = Key, NewValue = Value>(expression: (pair: KeyValuePair<Key, Value>) => KeyValuePair<NewKey, NewValue>): IDictionary<NewKey, NewValue>;
   mapToArray<Expression extends (pair: KeyValuePair<Key, Value>) => any>(

@@ -141,6 +141,19 @@ describe('some', () => {
   });
 });
 
+describe('find', () => {
+  test('case 1', () => {
+    const dictionary = new Dictionary();
+    expect(dictionary.find(pair => pair.key)).toBe(undefined);
+  });
+
+  test('case 2', () => {
+    const dictionary = new Dictionary();
+    dictionary.add(1, 11);
+    expect(dictionary.find(pair => pair.key)).toBe(dictionary.pairs[0]);
+  });
+});
+
 describe('forEach', () => {
   test('case 1', () => {
     const dictionary = new Dictionary();
