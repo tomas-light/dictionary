@@ -1,13 +1,10 @@
 {
   "compilerOptions": {
-    "allowJs": true,
     "allowSyntheticDefaultImports": true,
-    "baseUrl": "./",
-    "checkJs": true,
     "declaration": true,
     "esModuleInterop": true,
     "importHelpers": true,
-    "module": "esnext",
+    "module": "CommonJS",
     "moduleResolution": "node",
     "noErrorTruncation": true,
     "outDir": "./dist",
@@ -17,5 +14,8 @@
     "target": "es6"
   },
   "include": ["src"],
-  "exclude": ["node_modules"]
+  "exclude": [
+    "node_modules",
+    "src/**/*.test.ts"
+  ]
 }

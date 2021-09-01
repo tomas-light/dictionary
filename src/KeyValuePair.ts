@@ -1,42 +1,41 @@
-import { IKeyValuePair } from "./IKeyValuePair";
-import { IPair } from "./IPair";
+import { Pair } from './types';
 
-export class KeyValuePair<TKey = any, TValue = any> implements IKeyValuePair<TKey, TValue> {
-    public key: TKey;
-    public value: TValue;
+export class KeyValuePair<TKey = any, TValue = any> implements Pair<TKey, TValue> {
+  key: TKey;
+  value: TValue;
 
-    constructor(pair?: IPair<TKey, TValue> | [ TKey, TValue ]) {
-        if (!pair) {
-            this.key = null as any;
-            this.value = null as any;
-        }
-        else if (Array.isArray(pair)) {
-            this.key = pair[0];
-            this.value = pair[1];
-        }
-        else {
-            this.key = pair.key;
-            this.value = pair.value;
-        }
+  constructor(pair?: Pair<TKey, TValue> | [TKey, TValue]) {
+    if (!pair) {
+      this.key = null as any;
+      this.value = null as any;
+    }
+    else if (Array.isArray(pair)) {
+      this.key = pair[0];
+      this.value = pair[1];
+    }
+    else {
+      this.key = pair.key;
+      this.value = pair.value;
+    }
+  }
+
+  static isPair(pair: any | Pair): pair is Pair {
+    if (pair instanceof KeyValuePair) {
+      return true;
     }
 
-    public toString(): string {
-        return `{key: ${this.key}, value: ${this.value}}`;
+    if (typeof pair !== 'object') {
+      return false;
     }
 
-    public toShortData(): [ TKey, TValue ] {
-        return [ this.key, this.value ];
-    }
+    return 'key' in pair && 'value' in pair;
+  }
 
-    public static isKeyValuePair(pair: any | KeyValuePair) {
-        if (pair instanceof KeyValuePair) {
-            return true;
-        }
+  toString(): string {
+    return `{key: '${this.key}', value: ${this.value}}`;
+  }
 
-        if (typeof pair !== "object") {
-            return false;
-        }
-
-        return "key" in pair && "value" in pair;
-    }
+  toArray(): [TKey, TValue] {
+    return [this.key, this.value];
+  }
 }
