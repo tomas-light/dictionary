@@ -1,6 +1,6 @@
 {
   "name": "@tomas_light/dictionary",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Dictionary like in C#",
   "scripts": {
     "build": "tsc",

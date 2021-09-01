@@ -86,18 +86,18 @@ export class Dictionary<Key = any, Value = any> implements IDictionary<Key, Valu
     return dictionary;
   }
 
-  mapToArray<NewKey = Key, NewValue = Value>(
-    expression: (pair: KeyValuePair<Key, Value>) => KeyValuePair<NewKey, NewValue>
-  ): KeyValuePair<NewKey, NewValue>[] {
+  mapToArray<Expression extends (pair: KeyValuePair<Key, Value>) => any>(
+    expression: Expression
+  ): Expression extends (pair: KeyValuePair<Key, Value>) => infer Item ? Item[] : never[] {
 
-    const pairs: KeyValuePair<NewKey, NewValue>[] = [];
+    const pairs: any[] = [];
 
     this.forEach((pair) => {
       const mappedPair = expression(pair);
       pairs.push(mappedPair);
     });
 
-    return pairs;
+    return pairs as any;
   }
 
 

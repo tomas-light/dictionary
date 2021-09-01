@@ -23,7 +23,9 @@ interface IDictionary<Key = any, Value = any> {
   some(expression: (pair: KeyValuePair<Key, Value>) => boolean): boolean;
   forEach(expression: (pair: KeyValuePair<Key, Value>) => void): void;
   map<NewKey = Key, NewValue = Value>(expression: (pair: KeyValuePair<Key, Value>) => KeyValuePair<NewKey, NewValue>): IDictionary<NewKey, NewValue>;
-  mapToArray<NewKey = Key, NewValue = Value>(expression: (pair: KeyValuePair<Key, Value>) => KeyValuePair<NewKey, NewValue>): KeyValuePair<NewKey, NewValue>[];
+  mapToArray<Expression extends (pair: KeyValuePair<Key, Value>) => any>(
+    expression: Expression
+  ): Expression extends (pair: KeyValuePair<Key, Value>) => infer Item ? Item[] : never[];
 
   toJson(): DictionaryJson<Key, Value>;
   toPairs(): Pair<Key, Value>[];
